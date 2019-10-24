@@ -34,7 +34,7 @@ const fetchCoordsByIP = function (ip, callback) {
       callback(error.message, null)
     } else {
       if (response.statusCode !== 200) {
-        const msg = `Status Code ${response.statusCode} when fetching IP. Response: ${content}`;
+        const msg = `Status Code ${response.statusCode} when fetching coordinates. Response: ${content}`;
         callback(Error(msg), null);
         return;
       }
@@ -55,12 +55,12 @@ const fetchISSFlyOverTimes = function(coords, callback) {
       callback(error.message, null)
     } else {
       if (response.statusCode !== 200) {
-        const msg = `Status Code ${response.statusCode} when fetching IP. Response: ${content}`;
+        const msg = `Status Code ${response.statusCode} when fetching ISS flyover times. Response: ${content}`;
         callback(Error(msg), null);
         return;
       }
-     
-      callback(null, content)
+      times = JSON.parse(content)
+      callback(null, times.response)
     }
   })
 };
